@@ -12,13 +12,18 @@ const XpayLogo = ({ animating }: { animating: number }) => {
     }, [animating, animationControls])
 
     const leftBarVariants = {
-        initial: { opacity: 0, height: 0, skewX: 0 },
-        animate: { opacity: 1, height: '100%', skewX: -25 }
+        initial: { opacity: 0, skewX: 0 },
+        animate: { opacity: 1, skewX: -25 }
     };
 
     const rightBarVariants = {
-        initial: { opacity: 0, height: 0, skewX: 0 },
-        animate: { opacity: 1, height: '100%', skewX: 25 }
+        initial: { opacity: 0, skewX: 0 },
+        animate: { opacity: 1, skewX: 25 }
+    };
+
+    const barFillVariants = {
+        initial: { clipPath: 'inset(50% 0% 50% 0%)' },
+        animate: { clipPath: 'inset(0% 0% 0% 0%)' }
     };
 
     const textVariants = {
@@ -41,13 +46,16 @@ const XpayLogo = ({ animating }: { animating: number }) => {
                     animate={animationControls}
                     transition={{ duration: 1.5, ease: easeInOut }}
                     className="absolute w-16 h-32 origin-center"
-                    style={{ transformOrigin: 'center', transform: 'skewX(-25deg)', bottom: 0, top: "auto" }}
+                    style={{ transformOrigin: 'center', transform: 'skewX(-25deg)', filter: "drop-shadow(0 0 3px #0ff)", }}
                 >
-                    <div
+                    <motion.div
                         className="w-full h-full rounded-2xl rounded-br-none rounded-tl-none"
+                        variants={barFillVariants}
+                        initial="initial"
+                        animate={animationControls}
+                        transition={{ duration: 1, ease: [0.65, 0, 0.35, 1], delay: 0.1 }}
                         style={{
                             background: 'linear-gradient(to bottom, #0033fe, #79e9ae, #36c4ff)',
-                            filter: "drop-shadow(0 0 3px #0ff)",
                             position: 'absolute',
                             bottom: 0,
                             top: "auto"
@@ -62,13 +70,16 @@ const XpayLogo = ({ animating }: { animating: number }) => {
                     animate={animationControls}
                     transition={{ duration: 1.5, ease: easeInOut }}
                     className="absolute w-16 h-32 origin-center"
-                    style={{ transformOrigin: 'center', transform: 'skewX(25deg)' }}
+                    style={{ transformOrigin: 'center', transform: 'skewX(25deg)', filter: "drop-shadow(0 0 3px #0ff)" }}
                 >
-                    <div
+                    <motion.div
                         className="w-full h-full rounded-2xl rounded-tr-none rounded-bl-none"
+                        variants={barFillVariants}
+                        initial="initial"
+                        animate={animationControls}
+                        transition={{ duration: 1, ease: [0.65, 0, 0.35, 1], delay: 0.1 }}
                         style={{
                             background: 'linear-gradient(to bottom, #049ef8, #79e9ae, #00e370)',
-                            filter: "drop-shadow(0 0 3px #0ff)",
                             position: 'absolute',
                             bottom: 0,
                             top: "auto"
